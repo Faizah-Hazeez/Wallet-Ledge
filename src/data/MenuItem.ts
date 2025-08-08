@@ -1,11 +1,8 @@
-export interface MenuItem {
-  label: string;
-  href: string;
-}
+import type { MenuItem } from "../types";
 
 export const menuItems: MenuItem[] = [
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Transactions", href: "/transactions" },
-  { label: "Reports", href: "/reports" },
-  { label: "Settings", href: "/settings" },
+  { label: "Dashboard", href: "" },
+  { label: "Transactions", href: "" },
+  { label: "Reports", href: "" },
+  { label: "Settings", href: "" },
 ];

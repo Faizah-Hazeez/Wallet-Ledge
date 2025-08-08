@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { menuItems } from "../data/MenuItem";
+import { useTransactionContext } from "../context/TransactionContext";
 
 function Navbar() {
+  const { searchQuery, setSearchQuery } = useTransactionContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -10,13 +12,16 @@ function Navbar() {
   }
 
   function toggleSearch() {
-    setIsSearchOpen((isSearchOpen) => !isSearchOpen);
+    setIsSearchOpen((isSearchOpen) => {
+      if (isSearchOpen) setSearchQuery("");
+      return !isSearchOpen;
+    });
     if (isMenuOpen) {
       setIsSearchOpen(false);
     }
   }
   return (
-    <header className="flex justify-between py-2 lg:px-10 px-2">
+    <header className="flex justify-between lg:py-2 lg:px-10 px-4 py-3">
       <div className="flex items-center lg:gap-6 gap-2">
         <button
           type="button"
@@ -36,25 +41,31 @@ function Navbar() {
         <div
           className={`${
             isSearchOpen
-              ? "border pl-4 pr-2 py-1 rounded-full border-[#437D8E] shadow"
+              ? "border lg:pl-4 pl-2 pr-2 py-1 rounded-full border-[#437D8E] shadow "
               : ""
           } flex items-center`}
         >
           <input
             type="text"
             placeholder={`${isSearchOpen ? "Search" : ""}`}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className={`${
-              isSearchOpen ? "visible" : "hidden"
-            } w-full border-0 outline-none`}
+              isSearchOpen ? "lg:w-48 w-30 opacity-100" : "w-0 opacity-0"
+            } transition-all duration-300 ease-in-out overflow-hidden ml-2 outline-0`}
           />
-          <a href="#" onClick={toggleSearch}>
+          <button
+            type="button"
+            aria-label={isSearchOpen ? "Close search" : "Open search"}
+            onClick={toggleSearch}
+          >
             <img
               src="/search.svg"
               alt="search-icon"
               aria-hidden="true"
-              className={`${isSearchOpen ? "w-5 h-5" : ""} `}
+              className={`${isSearchOpen ? "w-4 h-4" : ""} `}
             />{" "}
-          </a>
+          </button>
         </div>
         <a href="#">
           <img src="/app-grid.svg" alt="app-grid" aria-hidden="true" />
@@ -62,7 +73,7 @@ function Navbar() {
         <a href="#">
           <img
             src="/avatar.png"
-            alt="search-icon"
+            alt="female"
             className="lg:w-10 lg:h-10 w-7 h-7"
             aria-hidden="true"
           />

@@ -1,7 +1,12 @@
+export interface MenuItem {
+  label: string;
+  href: string;
+}
+
 export interface SummaryData {
   label: string;
-  amount: string;
-  percentage: string;
+  amount: number;
+  percentage: number;
 }
 
 export interface Transaction {
