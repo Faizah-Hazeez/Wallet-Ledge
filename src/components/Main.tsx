@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Summary from "./Summary";
+import Table from "./Table";
 
 function Main() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -92,6 +93,9 @@ function Main() {
 
       {/* summary */}
       <Summary />
+
+      {/* TABLE */}
+      <Table />
     </main>
   );
 }
