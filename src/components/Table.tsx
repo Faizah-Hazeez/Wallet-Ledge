@@ -95,7 +95,7 @@ function Table() {
                 </div>
               </th>
               <th
-                className="w-[10%] lg:table-cell hidden cursor-pointer border-b-[1.5px] border-[#49656E33]"
+                className="hidden lg:table-cell w-[10%] cursor-pointer border-b-[1.5px] border-[#49656E33]"
                 onClick={() => sortToggle("currency")}
               >
                 <div className="flex items-center gap-1">
@@ -127,7 +127,7 @@ function Table() {
                 <td className="border-b-[1.5px] border-[#49656E33]">
                   {formatAmount(amount)}
                 </td>
-                <td className="lg:table-cell hidden border-b-[1.5px] border-[#49656E33]">
+                <td className="hidden lg:table-cell border-b-[1.5px] border-[#49656E33]">
                   {currency}
                 </td>
                 <td className="border-b-[1.5px] border-[#49656E33] pb-2">
